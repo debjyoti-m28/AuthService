@@ -9,3 +9,4 @@
   - In config.json in `development` change the db `password` and give `database` name
 - create database
   - run `yarn sequelize db:create`
+  -
