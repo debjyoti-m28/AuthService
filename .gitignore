@@ -1,0 +1,3 @@
+.yarn/
+.env
+src/config/config.json
