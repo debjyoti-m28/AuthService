@@ -1,6 +1,6 @@
 const { User } = require("../models/index");
 
-class userRepository {
+class UserRepository {
     
     async create(data) {
         try {
@@ -25,4 +25,8 @@ class userRepository {
             throw {error};
         }
     }
+}
+
+module.exports = {
+    UserRepository
 }
