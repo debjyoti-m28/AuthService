@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import moduleExports, { Module } from 'module';
 
+
 var PathType;
 (function(PathType2) {
   PathType2[PathType2["File"] = 0] = "File";

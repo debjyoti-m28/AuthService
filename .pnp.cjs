@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable */
 
+
 try {
   Object.freeze({}).detectStrictMode = true;
 } catch (error) {
