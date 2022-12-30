@@ -68,6 +68,24 @@ class UserService {
             throw error;
         } 
     }
+
+    async isAuthenticated(token) {
+        try {
+            const response = this.verifyToken(token); // response = {email: 'deb@gmail.com', id: 2, iat: 26458, uat: 2648}
+            if(!response) {
+                throw {error: 'Invalid token'};
+            }
+            
+            const user = await this.userRepository.getUserById(response.id);
+            if (!user) {
+                throw {error: 'No user with the corresponding token exists'}
+            }
+            return user.id;
+        } catch (error) {
+            console.log("Something went wrong in service layer");
+            throw {error}
+        }
+    }
 }
 
 module.exports = UserService;
