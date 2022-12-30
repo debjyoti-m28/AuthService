@@ -13,3 +13,17 @@
   - run `yarn sequelize model:generate --name User --attributes email:string,password:string`
 - Migration of model
   - run `yarn sequelize db:migrate`
+
+### Database relation
+
+- A user can have multiple roles and one role can belong to multiple users (many to many)
+  - generate a Role model which will contain the name of the role for each user
+    - run `yarn sequelize model:generate --name Role --attributes name:string`
+
+### Seeding dummy data
+
+- Generate data for `Role` table
+  - run `yarn sequelize seed:generate --name add-roles`
+  - specify the Table name (`Roles`) in the newly generated seeders file and put dummy data
+- Seed dummy data into `Role' table
+  - run ` yarn sequelize db:seed --seed 20221230072846-add-roles.js` to seed a particular table data, otherwise run ` yarn sequelize db:seed:all`

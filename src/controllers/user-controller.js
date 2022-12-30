@@ -47,7 +47,7 @@ const signIn = async (req, res) => {
 
 const isAuthenticated = async (req, res) => {
     try {
-        //get the token from request headers
+        //get the token from request headers and check if the token expired or not, if the token expired user need to login again
         const token = req.headers['x-access-token'];
         const response = await userService.isAuthenticated(token); //response = {userId: 2}
         res.status(200).json({
