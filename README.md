@@ -1,4 +1,4 @@
-# AuthService
+# Welcome to Auth Service for Airline management backend
 
 ### Setting up sequelize and sequelize-cli
 
@@ -17,8 +17,19 @@
 ### Database relation
 
 - A user can have multiple roles and one role can belong to multiple users (many to many)
+
   - generate a Role model which will contain the name of the role for each user
     - run `yarn sequelize model:generate --name Role --attributes name:string`
+    - we already have User model created
+  - Sync detabases to perform joins
+
+    ```
+    const db = require("./models/index");
+
+    if(process.env.DB_SYNC) {
+        db.sequelize.sync({alter: true});
+    }
+    ```
 
 ### Seeding dummy data
 
