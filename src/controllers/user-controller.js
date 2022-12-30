@@ -1,4 +1,5 @@
 const UserService = require("../services/user-service");
+const { ServerErrorCodes, SuccessCodes } = require("../utils/error-codes");
 
 const userService = new UserService();
 
@@ -8,7 +9,7 @@ const create = async (req,res) => {
             email: req.body.email,
             password: req.body.password
         });
-        return res.status(201).json({
+        return res.status(SuccessCodes.CREATED).json({
             data: user,
             success: true,
             message: "Successfully created the new user.",
@@ -16,7 +17,7 @@ const create = async (req,res) => {
         })  
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Something went wrong",
@@ -28,7 +29,7 @@ const create = async (req,res) => {
 const signIn = async (req, res) => {
     try {
         const response = await userService.signIn(req.body.email, req.body.password);
-        res.status(200).json({
+        res.status(SuccessCodes.OK).json({
             data: response,
             success: true,
             message: "Successfully logged in",
@@ -36,7 +37,7 @@ const signIn = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Something went wrong",
@@ -50,7 +51,7 @@ const isAuthenticated = async (req, res) => {
         //get the token from request headers and check if the token expired or not, if the token expired user need to login again
         const token = req.headers['x-access-token'];
         const response = await userService.isAuthenticated(token); //response = {userId: 2}
-        res.status(200).json({
+        res.status(SuccessCodes.OK).json({
             data: response,
             success: true,
             message: "User is authenticated and token is valid.",
@@ -58,7 +59,7 @@ const isAuthenticated = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Something went wrong in authentication",
@@ -70,7 +71,7 @@ const isAuthenticated = async (req, res) => {
 const isAdmin = async (req, res) => {
     try {
         const response = await userService.isAdmin(req.body.id);
-        res.status(200).json({
+        res.status(SuccessCodes.OK).json({
             data: response,
             success: true,
             message: "Successfully fetched whether user is admin or not",
@@ -78,7 +79,7 @@ const isAdmin = async (req, res) => {
         })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(ServerErrorCodes.INTERNAL_SERVER_ERROR).json({
             data: {},
             success: false,
             message: "Something went wrong in validate admin role",
