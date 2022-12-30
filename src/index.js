@@ -20,7 +20,7 @@ const startServer = () =>{
     }
     
 
-    //Test for 'USER_ROLES'
+    //Test for 'USER_ROLES' (many to many relation) 
     // const u1 =await User.findByPk(3);
     // const r1 =await Role.findOne({
     //     where: {
