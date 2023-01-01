@@ -1,4 +1,4 @@
-# Welcome to Auth Service for Airline management backend
+# Welcome to Auth Service
 
 ### Setting up sequelize and sequelize-cli
 
